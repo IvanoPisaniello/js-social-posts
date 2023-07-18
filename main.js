@@ -101,10 +101,15 @@ posts.forEach((post, i) => {
 
 
 
-    const likeBtn = document.getElementById("likeBtn");
-    likeBtn.addEventListener("click", function () {
-        likeBtn.classList.toggle("text-danger")
 
 
+})
+const likeBtn = document.querySelectorAll(".like-button");
+
+likeBtn.forEach(button => {
+    button.addEventListener("click", function () {
+        this.classList.toggle("text-danger")
     })
 })
+
+
