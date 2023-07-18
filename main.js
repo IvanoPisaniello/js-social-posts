@@ -84,7 +84,7 @@ posts.forEach((post, i) => {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="${post.id}" id="likeBtn${post.id}">
+                        <a class="like-button  js-like-button" href="#" data-postid="${post.id}" id="likeBtn">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label" id="btnLabel">Mi Piace</span>
                         </a>
@@ -93,11 +93,18 @@ posts.forEach((post, i) => {
                         Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone
                     </div>
                 </div> 
-            </div>`)
+            </div>`);
 
 
 
     container.append(postCard);
-    // likeBtn = document.querySelector("likeBtn");
 
+
+
+    const likeBtn = document.getElementById("likeBtn");
+    likeBtn.addEventListener("click", function () {
+        likeBtn.classList.toggle("text-danger")
+
+
+    })
 })
