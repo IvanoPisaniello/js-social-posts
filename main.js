@@ -104,12 +104,26 @@ posts.forEach((post, i) => {
 
 
 })
-const likeBtn = document.querySelectorAll(".like-button");
 
+
+
+const likeBtn = document.querySelectorAll(".like-button");
+const likeCount = document.querySelectorAll(".js-likes-counter");
+listBtn = [];
 likeBtn.forEach(button => {
+    // const likeCount = document.querySelectorAll(".js-likes-counter");
     button.addEventListener("click", function () {
         this.classList.toggle("text-danger")
+        listBtn.push(button);
+        const likeCount = document.querySelectorAll(".js-likes-counter");
+
+        likeCount.innerHTML = (81)
+
     })
+
+
+    console.log(listBtn)
 })
+
 
 
