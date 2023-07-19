@@ -64,7 +64,7 @@ const container = document.getElementById("container");
 posts.forEach((posts, i) => {
     const postCard = document.createElement("div")
     postCard.classList.add("post")
-
+    postCard.dataset.index = i;
 
     postCard.innerHTML = (`<div class="post__header">
                 <div class="post-meta">                    
@@ -84,13 +84,13 @@ posts.forEach((posts, i) => {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="${posts.id}" id="likeBtn">
+                        <a class="like-button  js-like-button" href="#0" data-postid="${posts.id}" id="likeBtn" data-index="${i}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label" id="btnLabel">Mi Piace</span>
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${posts.likes}</b> persone
+                        Piace a <b id="like-counter-${posts.id}" class="js-likes-counter">${posts.likes}</b> persone
                     </div>
                 </div> 
             </div>`);
@@ -114,17 +114,22 @@ listBtn = [];
 likeBtn.forEach(button => {
     // const likeCount = document.querySelectorAll(".js-likes-counter");
     button.addEventListener("click", function () {
+        const indexBTn = this.dataset.index
+        const currentPost = posts[indexBTn]
         this.classList.toggle("text-danger")
         listBtn.push(button);
         // const likeCount = document.querySelectorAll(".js-likes-counter");
 
 
         // posts.likes = posts.likes + 1;
-        const likeList = document.querySelectorAll(".js-likes-counter");
-        const newValue = posts.likes = posts.likes + 1;
-        for (let i = 0; i < likeList.length; i++) {
-            likeList[i].innerHTML = newValue;
-        }
+        const likeListEl = document.querySelectorAll(".js-likes-counter");
+        const newValue = (++currentPost.likes);
+        likeListEl.forEach(element => {
+            element.innerHTML = newValue;
+
+        });
+
+        const click = true;
         console.log(posts.likes)
         // posts.likes += 1
         // const likeCount = document.querySelectorAll(".js-likes-counter");
@@ -133,6 +138,7 @@ likeBtn.forEach(button => {
         // // likeCount.innerHTML = `Piace a <b id="like-counter-1" class="js-likes-counter">blabla</b> persone`
 
         // console.log(likeCount)
+
     })
 
 
